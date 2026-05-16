@@ -28,15 +28,28 @@
       window.gtag('set', 'url_passthrough', true);
     </script>
     <script>
+      // Defer GTM until after `load` so it doesn't block LCP on slow CPUs.
+      // PSI mobile (Moto G Power, 4G) showed GTM eating ~1.8s of script
+      // time during initial render. Pushing it to idle keeps the conversion
+      // tracking working (clicks happen well after load) while letting the
+      // hero paint first.
       (function(){
         var host = location.hostname;
         if (host !== 'nuttapatk.dev' && host !== 'www.nuttapatk.dev') return;
 
-        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-5T2973JX');
+        function loadGTM(){
+          (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+          })(window,document,'script','dataLayer','GTM-5T2973JX');
+        }
+
+        if (document.readyState === 'complete') {
+          setTimeout(loadGTM, 1500);
+        } else {
+          window.addEventListener('load', function(){ setTimeout(loadGTM, 1500); }, { once: true });
+        }
       })();
     </script>
 
