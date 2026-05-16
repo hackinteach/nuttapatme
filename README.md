@@ -1,73 +1,85 @@
-# React + TypeScript + Vite
+# nuttapatk.dev
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Personal portfolio and freelance landing for [Nuttapat K.](https://nuttapatk.dev),
+a senior software engineer in Bangkok. Live at <https://nuttapatk.dev>.
 
-Currently, two official plugins are available:
+Three static pages, one repo:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+| Route | Purpose |
+|---|---|
+| [`/`](https://nuttapatk.dev) | Portfolio — bio, experience, projects |
+| [`/hire`](https://nuttapatk.dev/hire) | Freelance landing for Google Ads — DevOps, K8s, GCP |
+| [`/privacy`](https://nuttapatk.dev/privacy) | GDPR + Thailand PDPA + CCPA privacy policy |
 
-## React Compiler
+## Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Vite + React + TypeScript · Tailwind v4 · Framer Motion · self-hosted variable fonts
+(Inter + JetBrains Mono via `@fontsource-variable`) · `simple-icons` for brand SVGs ·
+Google Tag Manager + GA4 + Google Ads (deferred-load, Consent Mode v2) ·
+Vercel hosting + Speed Insights.
 
-## Expanding the ESLint configuration
+No backend, no router, no third-party CMP — the consent banner is a small
+React component that talks to `gtag('consent', 'update', …)` directly and
+persists the choice in `localStorage`.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Local dev
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Requires Node ≥ 20 (Vite 8 doesn't support the system Node 16 some Macs ship with).
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+npm run dev      # vite on :5173
+npm run build    # tsc -b && vite build → dist/
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+The `vite.config.ts` declares three HTML entry points (`index.html`,
+`hire/index.html`, `privacy/index.html`) plus a small custom plugin that
+preloads the critical Inter Latin font from the build manifest.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Project structure
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
 ```
+index.html, hire/, privacy/        Three HTML entry points (Vite multi-page)
+src/
+  main.tsx, hire.tsx, privacy.tsx  React entry points
+  App.tsx, HirePage.tsx,           Page roots
+    PrivacyPage.tsx
+  data.ts, hire-data.ts            All copy — edit here, not in components
+  components/                      Sections (Hero, Experience, Projects, …)
+    hire/                          /hire-specific sections
+  lib/
+    email.ts                       ROT13-obfuscated email helpers
+    consent.ts                     localStorage consent + Consent Mode v2 bridge
+    analytics.ts                   dataLayer event helpers
+public/                            favicon.svg, robots.txt, sitemap.xml
+vercel.json                        Security headers + 1y asset cache
+```
+
+## Deployment
+
+Vercel auto-deploys on push to `main`. DNS is at Cloudflare Registrar
+(DNS-only, no proxy) → `A @ 76.76.21.21` + `CNAME www cname.vercel-dns.com`.
+
+## Performance baseline
+
+PageSpeed Insights (last lab run, all metrics):
+
+| | Desktop | Mobile |
+|---|---|---|
+| Performance | 75 | 82 |
+| Accessibility | 100 | 100 |
+| Best Practices | 100 | 100 |
+| SEO | 100 | 100 |
+
+## More docs
+
+- [SKILL.md](SKILL.md) — full project knowledge base (architecture
+  decisions, consent flow history, performance journey, design language)
+- [CLAUDE.md](CLAUDE.md) — operational guidance for [Claude Code](https://claude.ai/code)
+  sessions on this repo
+
+## License
+
+Source available for reference. Content (résumé text, project descriptions,
+custom design) is © Nuttapat K. — please don't redeploy a clone as your
+own portfolio.
