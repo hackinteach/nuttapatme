@@ -122,18 +122,20 @@ export function TechOrbit() {
         </motion.div>
       </div>
 
-      {/* Outer ring — clockwise */}
+      {/* Outer ring — clockwise. will-change pushes the rotation to the GPU. */}
       <motion.div
         className="absolute inset-0"
+        style={{ willChange: "transform" }}
         animate={{ rotate: 360 }}
         transition={{ duration: OUTER_DURATION, repeat: Infinity, ease: "linear" }}
       >
         {placeOnRing(OUTER_RING, OUTER_RADIUS_PCT, 360, OUTER_DURATION)}
       </motion.div>
 
-      {/* Inner ring — counter-clockwise */}
+      {/* Inner ring — counter-clockwise. */}
       <motion.div
         className="absolute inset-0"
+        style={{ willChange: "transform" }}
         animate={{ rotate: -360 }}
         transition={{ duration: INNER_DURATION, repeat: Infinity, ease: "linear" }}
       >

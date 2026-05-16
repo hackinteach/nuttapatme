@@ -1,4 +1,3 @@
-import { useLenis } from "./hooks/useLenis";
 import { HireNavbar } from "./components/hire/HireNavbar";
 import { HireHero } from "./components/hire/HireHero";
 import { TrustStrip } from "./components/hire/TrustStrip";
@@ -11,7 +10,6 @@ import { HireFooter } from "./components/hire/HireFooter";
 import { CookieBanner } from "./components/CookieBanner";
 
 export function HirePage() {
-  useLenis();
   return (
     <>
       <HireNavbar />
