@@ -8,6 +8,7 @@ import { FAQ } from "./components/hire/FAQ";
 import { FinalCTA } from "./components/hire/FinalCTA";
 import { HireFooter } from "./components/hire/HireFooter";
 import { CookieBanner } from "./components/CookieBanner";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 export function HirePage() {
   return (
@@ -24,6 +25,7 @@ export function HirePage() {
       </main>
       <HireFooter />
       <CookieBanner />
+      <SpeedInsights />
     </>
   );
 }

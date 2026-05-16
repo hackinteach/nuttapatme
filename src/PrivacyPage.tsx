@@ -1,6 +1,7 @@
 import { Footer } from "./components/Footer";
 import { Navbar } from "./components/Navbar";
 import { CookieBanner } from "./components/CookieBanner";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import { EMAIL_DISPLAY } from "./lib/email";
 
 // Bump when the policy materially changes.
@@ -151,7 +152,7 @@ export function PrivacyPage() {
             controller for the purposes described above:
           </p>
           <ul>
-            <li><strong>Vercel</strong> — hosting and CDN for this site.</li>
+            <li><strong>Vercel</strong> — hosting and CDN. Also runs Speed Insights, a cookieless real-user performance monitor (page URL, country, viewport, Core Web Vitals — no personal identifiers, no cookies).</li>
             <li><strong>Cloudflare</strong> — DNS for the nuttapatk.dev domain.</li>
             <li><strong>Google</strong> — Google Tag Manager, Google Analytics 4, Google Ads (only with consent).</li>
             <li><strong>Cal.com</strong> — scheduling, only if you book an intro call.</li>
@@ -198,6 +199,7 @@ export function PrivacyPage() {
       </main>
       <Footer />
       <CookieBanner />
+      <SpeedInsights />
     </>
   );
 }

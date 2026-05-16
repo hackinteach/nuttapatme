@@ -7,6 +7,7 @@ import { Competitions } from "./components/Competitions";
 import { Contact } from "./components/Contact";
 import { Footer } from "./components/Footer";
 import { CookieBanner } from "./components/CookieBanner";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 export default function App() {
   return (
@@ -22,6 +23,7 @@ export default function App() {
       </main>
       <Footer />
       <CookieBanner />
+      <SpeedInsights />
     </>
   );
 }
