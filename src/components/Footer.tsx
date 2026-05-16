@@ -7,6 +7,7 @@ export function Footer() {
       <div className="max-w-6xl mx-auto px-6 flex flex-wrap items-center justify-between gap-3 text-xs text-white/40 font-mono">
         <p>© {new Date().getFullYear()} {profile.name}</p>
         <div className="flex flex-wrap items-center gap-4">
+          <a href="/privacy" className="hover:text-white/70">Privacy</a>
           <button
             type="button"
             onClick={openCookieSettings}

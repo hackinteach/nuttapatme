@@ -21,6 +21,9 @@ export function HireFooter() {
             </a>
           </li>
           <li>
+            <a href="/privacy" className="hover:text-white/70">Privacy</a>
+          </li>
+          <li>
             <button type="button" onClick={openCookieSettings} className="hover:text-white/70">
               Cookie settings
             </button>
