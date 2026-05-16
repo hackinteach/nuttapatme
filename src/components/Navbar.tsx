@@ -2,12 +2,24 @@ import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { useState } from "react";
 import { trackHireMeClick } from "../lib/analytics";
 
-const links = [
-  { href: "#about", label: "About" },
-  { href: "#experience", label: "Experience" },
-  { href: "#projects", label: "Projects" },
-  { href: "#competitions", label: "Competitions" },
+const sections = [
+  { id: "about", label: "About" },
+  { id: "experience", label: "Experience" },
+  { id: "projects", label: "Projects" },
+  { id: "competitions", label: "Competitions" },
 ];
+
+/** Build a section href that works whether or not we're on the portfolio.
+ *  On `/`: returns `#about` so the click is a pure scroll, no reload.
+ *  On `/privacy`: returns `/#about` so the click navigates home and
+ *  the browser scrolls to the anchor after load. */
+function sectionHref(id: string): string {
+  const onPortfolio =
+    typeof window === "undefined" ||
+    window.location.pathname === "/" ||
+    window.location.pathname === "/index.html";
+  return onPortfolio ? `#${id}` : `/#${id}`;
+}
 
 export function Navbar() {
   const { scrollY, scrollYProgress } = useScroll();
@@ -17,6 +29,9 @@ export function Navbar() {
   const borderColor = useTransform(borderOpacity, (v) => `rgba(255,255,255,${v})`);
   const progress = useSpring(scrollYProgress, { stiffness: 120, damping: 24, mass: 0.3 });
   const [open, setOpen] = useState(false);
+
+  const logoHref = sectionHref("top");
+  const contactHref = sectionHref("contact");
 
   return (
     <motion.nav
@@ -31,7 +46,7 @@ export function Navbar() {
       >
         <div className="max-w-6xl mx-auto px-6 h-16 grid grid-cols-[auto_1fr_auto] items-center gap-4">
           {/* Left: logo */}
-          <a href="#top" className="flex items-center gap-2 group">
+          <a href={logoHref} className="flex items-center gap-2 group">
             <span className="relative inline-flex h-3 w-3">
               <span className="absolute inline-flex h-full w-full rounded-full bg-[var(--color-accent)] opacity-75 pulse-ring" />
               <span className="relative inline-flex h-3 w-3 rounded-full bg-[var(--color-accent)]" />
@@ -43,13 +58,13 @@ export function Navbar() {
 
           {/* Center: section links */}
           <ul className="hidden md:flex items-center justify-center gap-1">
-            {links.map((l) => (
-              <li key={l.href}>
+            {sections.map((s) => (
+              <li key={s.id}>
                 <a
-                  href={l.href}
+                  href={sectionHref(s.id)}
                   className="px-3 py-2 text-sm text-white/70 hover:text-white rounded-md transition-colors hover:bg-white/5"
                 >
-                  {l.label}
+                  {s.label}
                 </a>
               </li>
             ))}
@@ -92,20 +107,20 @@ export function Navbar() {
             className="md:hidden border-t border-white/5 bg-black/70 backdrop-blur"
           >
             <ul className="px-6 py-4 grid gap-2">
-              {links.map((l) => (
-                <li key={l.href}>
+              {sections.map((s) => (
+                <li key={s.id}>
                   <a
-                    href={l.href}
+                    href={sectionHref(s.id)}
                     onClick={() => setOpen(false)}
                     className="block py-2 text-white/80"
                   >
-                    {l.label}
+                    {s.label}
                   </a>
                 </li>
               ))}
               <li>
                 <a
-                  href="#contact"
+                  href={contactHref}
                   onClick={() => setOpen(false)}
                   className="block py-2 text-white/80"
                 >
