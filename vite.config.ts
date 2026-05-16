@@ -54,6 +54,12 @@ export default defineConfig({
           if (name.endsWith('.css')) return 'assets/styles-[hash][extname]';
           return 'assets/[name]-[hash][extname]';
         },
+        // Put all node_modules into a single `vendor` chunk so it gets a
+        // stable, descriptive filename instead of being named after the
+        // largest app-side importer (e.g. `CookieBanner-….js`).
+        manualChunks(id) {
+          if (id.includes('node_modules')) return 'vendor';
+        },
       },
     },
   },
