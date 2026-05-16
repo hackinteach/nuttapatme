@@ -3,7 +3,7 @@
 
 export const hire = {
   bookingUrl: "https://cal.com/nuttapatk", // TODO: replace with your real Cal.com / Calendly link
-  capacity: "Booking 2 engagements for Q3 2026",
+  capacity: "Available for new projects",
 };
 
 export type Service = {
