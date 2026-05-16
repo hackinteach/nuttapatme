@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { GraduationCap, MessageCircle, ArrowRight } from "lucide-react";
 import { advisory, hire } from "../../hire-data";
+import { trackBookCallClick } from "../../lib/analytics";
 
 const icons = [GraduationCap, MessageCircle];
 
@@ -79,6 +80,7 @@ export function Advisory() {
             href={hire.bookingUrl}
             target="_blank"
             rel="noreferrer"
+            onClick={() => trackBookCallClick("hire_advisory")}
             className="group inline-flex items-center gap-1.5 text-sm text-white/75 hover:text-white"
           >
             Tell me what you need

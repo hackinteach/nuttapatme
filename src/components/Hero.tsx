@@ -4,6 +4,7 @@ import { Mail, MapPin, ArrowDown } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "./icons";
 import { profile } from "../data";
 import { openMail } from "../lib/email";
+import { trackHireMeClick } from "../lib/analytics";
 
 const container: Variants = {
   hidden: {},
@@ -132,6 +133,7 @@ export function Hero() {
             </a>
             <a
               href="/hire"
+              onClick={() => trackHireMeClick("portfolio_hero")}
               className="inline-flex items-center gap-2 px-5 py-3 rounded-full glass text-white font-medium hover:bg-white/5 transition"
             >
               Hire me →

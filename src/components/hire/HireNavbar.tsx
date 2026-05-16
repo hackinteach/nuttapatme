@@ -1,5 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { hire } from "../../hire-data";
+import { trackBookCallClick } from "../../lib/analytics";
 
 export function HireNavbar() {
   const { scrollY } = useScroll();
@@ -39,6 +40,7 @@ export function HireNavbar() {
               href={hire.bookingUrl}
               target="_blank"
               rel="noreferrer"
+              onClick={() => trackBookCallClick("hire_navbar")}
               className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white text-black text-sm font-medium hover:bg-white/90 transition"
             >
               Book a call

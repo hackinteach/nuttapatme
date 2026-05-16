@@ -3,6 +3,7 @@ import { useRef } from "react";
 import { Calendar, ArrowRight } from "lucide-react";
 import { hire } from "../../hire-data";
 import { EmailButton } from "../EmailButton";
+import { trackBookCallClick } from "../../lib/analytics";
 
 export function FinalCTA() {
   const ref = useRef<HTMLElement>(null);
@@ -67,6 +68,7 @@ export function FinalCTA() {
             href={hire.bookingUrl}
             target="_blank"
             rel="noreferrer"
+            onClick={() => trackBookCallClick("hire_final_cta")}
             className="group inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white text-black font-medium hover:bg-white/90 transition"
           >
             <Calendar size={18} />

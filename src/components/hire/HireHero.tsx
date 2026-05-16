@@ -1,6 +1,7 @@
 import { motion, type Variants } from "framer-motion";
 import { Calendar, ArrowRight, Check } from "lucide-react";
 import { hire } from "../../hire-data";
+import { trackBookCallClick } from "../../lib/analytics";
 
 const container: Variants = {
   hidden: {},
@@ -74,6 +75,7 @@ export function HireHero() {
               href={hire.bookingUrl}
               target="_blank"
               rel="noreferrer"
+              onClick={() => trackBookCallClick("hire_hero")}
               className="group inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white text-black font-medium hover:bg-white/90 transition"
             >
               <Calendar size={18} />
