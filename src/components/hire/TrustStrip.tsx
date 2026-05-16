@@ -12,7 +12,7 @@ export function TrustStrip() {
           transition={{ duration: 0.5 }}
         >
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-white/40 mb-4">
-            Shipped production systems at
+            Shipped production systems across
           </p>
           <ul className="flex flex-wrap gap-x-6 gap-y-2">
             {trustedBy.map((c) => (

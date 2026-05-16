@@ -92,12 +92,14 @@ export const credentials = [
   { label: "Time zone overlap", value: "Bangkok (ICT, UTC+7)" },
 ];
 
+// Names redacted while I sort out approvals to publish client logos.
+// Industry tags still convey breadth without disclosing specifics.
 export const trustedBy = [
-  "CertuSystems",
-  "TheGang Technology",
-  "AXA Thailand",
-  "Diamond Building Products",
-  "CMKL University",
+  "Enterprise SaaS",
+  "Fortune 500 Insurance",
+  "Software Consultancy",
+  "Industrial / Manufacturing",
+  "Higher Education & Research",
 ];
 
 export type ProcessStep = {
@@ -150,7 +152,7 @@ export const faqs: FAQ[] = [
   },
   {
     q: "Aren't you employed full-time?",
-    a: "Yes — I'm a Senior Software Engineer at CertuSystems during the day. Freelance is evenings, weekends, and the occasional vacation day. That means roughly 10–15 focused hours per week per client, async-first, with weekly demos instead of daily standups. It's why I lean toward fixed-scope work (audits, migrations, training) rather than embedded full-time-equivalent roles.",
+    a: "Yes — I have a Senior Software Engineer day job. Freelance is evenings, weekends, and the occasional vacation day. That means roughly 10–15 focused hours per week per client, async-first, with weekly demos instead of daily standups. It's why I lean toward fixed-scope work (audits, migrations, training) rather than embedded full-time-equivalent roles.",
   },
   {
     q: "Do you sign NDAs?",
