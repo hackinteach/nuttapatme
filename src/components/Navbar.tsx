@@ -36,7 +36,7 @@ export function Navbar() {
               <span className="relative inline-flex h-3 w-3 rounded-full bg-[var(--color-accent)]" />
             </span>
             <span className="font-mono text-sm tracking-tight text-white/90 group-hover:text-white">
-              nuttapat<span className="text-[var(--color-accent-2)]">.me</span>
+              nuttapatk<span className="text-[var(--color-accent-2)]">.dev</span>
             </span>
           </a>
 
