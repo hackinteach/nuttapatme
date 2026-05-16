@@ -79,9 +79,9 @@ export const advisory: AdvisoryService[] = [
       "Architecture reviews and second opinions before you commit to a direction",
       "Technical due diligence for acquisitions or vendor selection",
       "Hiring support: technical screens, take-home review, panel interviews",
-      "Fractional engineering lead for early-stage teams (2–3 days/week)",
+      "Async advisory retainer — async messages and weekly office hours",
     ],
-    format: "Hourly calls, fixed-fee audits, or monthly advisory retainer",
+    format: "Hourly calls, fixed-fee audits, or monthly async retainer",
   },
 ];
 
@@ -120,7 +120,7 @@ export const process: ProcessStep[] = [
   {
     step: "03",
     title: "Execution",
-    body: "I work async with your team, push code daily, demo weekly. Documented as I go so your team owns it after I leave.",
+    body: "Async-first execution outside business hours. Code lands in PRs as it's ready, plus a weekly demo and written status. Documented as I go so your team owns it after I leave.",
   },
   {
     step: "04",
@@ -138,19 +138,19 @@ export const faqs: FAQ[] = [
   },
   {
     q: "What's a typical engagement size?",
-    a: "Audits run 1–2 weeks. Execution work is usually 4–8 weeks for a single workload migration or infra rebuild. I take 2–3 concurrent clients max to stay focused.",
+    a: "Audits run 2–3 weeks at part-time pace. Execution work is usually 6–10 weeks for a single workload migration or infra rebuild — calendar weeks, not effort weeks. I take 1–2 concurrent clients max so each one gets real focus.",
   },
   {
     q: "Do you work across time zones?",
-    a: "Yes. I'm in Bangkok (UTC+7) and used to async work with teams in the US, EU, and APAC. I overlap 2–4 hours with US Pacific in the early morning and US Eastern late evening.",
+    a: "Yes. I'm in Bangkok (UTC+7) and async-first. Weekday work happens in evenings, which is actually convenient overlap for US Pacific mornings and US Eastern late mornings. Weekend days are wide open for synchronous work or workshops.",
   },
   {
     q: "What if I don't have a clear scope yet?",
     a: "That's most engagements. The audit phase exists exactly to turn 'something is wrong with our infra' into a concrete plan. We start there.",
   },
   {
-    q: "Can you join my team as a fractional engineer?",
-    a: "Yes — common for early-stage startups that need senior DevOps muscle without a full hire. Usually 2–3 days/week on a monthly retainer.",
+    q: "Aren't you employed full-time?",
+    a: "Yes — I'm a Senior Software Engineer at CertuSystems during the day. Freelance is evenings, weekends, and the occasional vacation day. That means roughly 10–15 focused hours per week per client, async-first, with weekly demos instead of daily standups. It's why I lean toward fixed-scope work (audits, migrations, training) rather than embedded full-time-equivalent roles.",
   },
   {
     q: "Do you sign NDAs?",
