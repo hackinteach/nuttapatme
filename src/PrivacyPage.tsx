@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { Footer } from "./components/Footer";
 import { Navbar } from "./components/Navbar";
+import { CookieBanner } from "./components/CookieBanner";
 import { EMAIL_DISPLAY } from "./lib/email";
 
 // Last reviewed date — bump when the policy materially changes.
@@ -159,6 +160,7 @@ export function PrivacyPage() {
         </Section>
       </main>
       <Footer />
+      <CookieBanner />
     </>
   );
 }

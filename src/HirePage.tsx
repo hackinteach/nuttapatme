@@ -8,6 +8,7 @@ import { Process } from "./components/hire/Process";
 import { FAQ } from "./components/hire/FAQ";
 import { FinalCTA } from "./components/hire/FinalCTA";
 import { HireFooter } from "./components/hire/HireFooter";
+import { CookieBanner } from "./components/CookieBanner";
 
 export function HirePage() {
   useLenis();
@@ -24,6 +25,7 @@ export function HirePage() {
         <FinalCTA />
       </main>
       <HireFooter />
+      <CookieBanner />
     </>
   );
 }
