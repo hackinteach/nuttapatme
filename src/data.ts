@@ -26,6 +26,10 @@ export const skills: { group: string; items: string[] }[] = [
     items: ["Jenkins", "GitLab CI", "GitOps", "Grafana", "Prometheus"],
   },
   {
+    group: "Security & Compliance",
+    items: ["OWASP Top 10", "Pentesting", "SOC 2", "ISO 27001", "PDPA", "IAM"],
+  },
+  {
     group: "Frontend",
     items: ["React", "Vue", "Vite", "Tailwind"],
   },
@@ -138,6 +142,16 @@ export const projects: Project[] = [
       "Bootstrapped and hardened a production K8s cluster on bare-metal in a restricted-network environment.",
       "Wrote Ansible playbooks for repeatable setup and disaster recovery.",
       "Documented runbooks and trained the in-house team to own it post-handoff.",
+    ],
+  },
+  {
+    title: "Security Audits & Compliance Hardening",
+    stack: ["OWASP Top 10", "Pentesting", "SOC 2", "ISO 27001", "PDPA", "IAM"],
+    summary: "Application + infra security reviews with prioritized remediation.",
+    bullets: [
+      "Conducted application and infrastructure pentests covering OWASP Top 10, IAM, and network exposure.",
+      "Gap analysis and remediation plans for SOC 2 / ISO 27001 / PDPA readiness.",
+      "Translated findings into engineering tickets ranked by exploitability and business risk — not by CVSS alone.",
     ],
   },
   {

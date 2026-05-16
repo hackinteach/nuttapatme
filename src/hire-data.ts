@@ -77,6 +77,7 @@ export const advisory: AdvisoryService[] = [
     tagline: "A senior brain on demand — no long contract required.",
     bullets: [
       "Architecture reviews and second opinions before you commit to a direction",
+      "Security audits and compliance gap analysis (SOC 2 / ISO 27001 / PDPA readiness, OWASP-aligned app + infra reviews)",
       "Technical due diligence for acquisitions or vendor selection",
       "Hiring support: technical screens, take-home review, panel interviews",
       "Async advisory retainer — async messages and weekly office hours",
