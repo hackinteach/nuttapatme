@@ -53,6 +53,38 @@ export const services: Service[] = [
   },
 ];
 
+export type AdvisoryService = {
+  title: string;
+  tagline: string;
+  bullets: string[];
+  format: string;
+};
+
+export const advisory: AdvisoryService[] = [
+  {
+    title: "Training & Workshops",
+    tagline: "Level up your team in days, not quarters.",
+    bullets: [
+      "Kubernetes fundamentals through CKAD-level operations",
+      "GCP + Terraform onboarding for new platform teams",
+      "CI/CD pipeline design with Jenkins or GitLab CI",
+      "Custom curriculum built from your real codebase, not generic slides",
+    ],
+    format: "On-site (Bangkok / SEA) or remote · 1–3 day workshops or longer cohorts",
+  },
+  {
+    title: "Advisory & Consulting",
+    tagline: "A senior brain on demand — no long contract required.",
+    bullets: [
+      "Architecture reviews and second opinions before you commit to a direction",
+      "Technical due diligence for acquisitions or vendor selection",
+      "Hiring support: technical screens, take-home review, panel interviews",
+      "Fractional engineering lead for early-stage teams (2–3 days/week)",
+    ],
+    format: "Hourly calls, fixed-fee audits, or monthly advisory retainer",
+  },
+];
+
 export const credentials = [
   { label: "Years in production", value: "5+" },
   { label: "Backend services shipped", value: "Dozens" },
