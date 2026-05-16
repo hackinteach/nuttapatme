@@ -141,6 +141,17 @@ export const projects: Project[] = [
     ],
   },
   {
+    title: "Full Observability Stack — Metrics, Logs, Traces, Profiles",
+    stack: ["Prometheus", "Loki", "OpenSearch", "Tempo", "Pyroscope", "Grafana"],
+    summary: "End-to-end o11y for a multi-service production environment.",
+    bullets: [
+      "Prometheus with custom exporters and scrape configs for non-instrumented systems.",
+      "Loki for hot operational logs, ELK/OpenSearch for long-term retention and ad-hoc search.",
+      "Distributed tracing for cross-service latency and continuous profiling for CPU/memory hotspots.",
+      "Grafana dashboards and alerting rules tuned to SLOs — not to noise.",
+    ],
+  },
+  {
     title: "Smart Home Controller Model",
     stack: ["Spring Boot", "ReactJS", "Docker", "Arduino"],
     url: "https://github.com/hackinteach/layzliving",
