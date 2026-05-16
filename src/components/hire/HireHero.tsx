@@ -2,6 +2,7 @@ import { motion, type Variants } from "framer-motion";
 import { Calendar, ArrowRight, Check } from "lucide-react";
 import { hire } from "../../hire-data";
 import { trackBookCallClick } from "../../lib/analytics";
+import { TechOrbit } from "./TechOrbit";
 
 const container: Variants = {
   hidden: {},
@@ -37,7 +38,7 @@ export function HireHero() {
         transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      <div className="relative max-w-5xl mx-auto px-6 w-full">
+      <div className="relative max-w-6xl mx-auto px-6 w-full grid lg:grid-cols-[1.1fr_1fr] gap-10 items-center">
         <motion.div variants={container} initial="hidden" animate="show" className="grid gap-7">
           <motion.div variants={item}>
             <span className="inline-flex items-center gap-2 glass px-3 py-1.5 rounded-full text-xs font-mono text-white/80">
@@ -93,6 +94,16 @@ export function HireHero() {
           <motion.p variants={item} className="text-xs text-white/40 font-mono">
             No sales call. No deck. We talk through your problem and figure out if I'm the right fit.
           </motion.p>
+        </motion.div>
+
+        {/* Tech-stack orbital — desktop only. Below lg, hero is single column. */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.92 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          className="hidden lg:block relative"
+        >
+          <TechOrbit />
         </motion.div>
       </div>
     </section>

@@ -3,7 +3,7 @@ import { process } from "../../hire-data";
 
 export function Process() {
   return (
-    <section className="relative py-24 sm:py-32 border-t border-white/5">
+    <section id="process" className="relative py-24 sm:py-32 border-t border-white/5">
       <div className="max-w-6xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

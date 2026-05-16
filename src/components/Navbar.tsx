@@ -1,12 +1,12 @@
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { useState } from "react";
+import { trackHireMeClick } from "../lib/analytics";
 
 const links = [
   { href: "#about", label: "About" },
   { href: "#experience", label: "Experience" },
   { href: "#projects", label: "Projects" },
   { href: "#competitions", label: "Competitions" },
-  { href: "#contact", label: "Contact" },
 ];
 
 export function Navbar() {
@@ -29,7 +29,8 @@ export function Navbar() {
         style={{ backgroundColor: bgColor, borderColor }}
         className="border-b backdrop-blur-md"
       >
-        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+        <div className="max-w-6xl mx-auto px-6 h-16 grid grid-cols-[auto_1fr_auto] items-center gap-4">
+          {/* Left: logo */}
           <a href="#top" className="flex items-center gap-2 group">
             <span className="relative inline-flex h-3 w-3">
               <span className="absolute inline-flex h-full w-full rounded-full bg-[var(--color-accent)] opacity-75 pulse-ring" />
@@ -40,7 +41,8 @@ export function Navbar() {
             </span>
           </a>
 
-          <ul className="hidden md:flex items-center gap-1">
+          {/* Center: section links */}
+          <ul className="hidden md:flex items-center justify-center gap-1">
             {links.map((l) => (
               <li key={l.href}>
                 <a
@@ -53,23 +55,33 @@ export function Navbar() {
             ))}
           </ul>
 
-          <button
-            aria-label="Toggle menu"
-            onClick={() => setOpen((o) => !o)}
-            className="md:hidden text-white/80 p-2 -mr-2"
-          >
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              {open ? (
-                <path d="M6 6l12 12M6 18L18 6" />
-              ) : (
-                <>
-                  <path d="M3 6h18" />
-                  <path d="M3 12h18" />
-                  <path d="M3 18h18" />
-                </>
-              )}
-            </svg>
-          </button>
+          {/* Right: highlighted Hire button + mobile menu trigger */}
+          <div className="flex items-center justify-end gap-2">
+            <a
+              href="/hire"
+              onClick={() => trackHireMeClick("portfolio_navbar")}
+              className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white text-black text-sm font-medium hover:bg-white/90 transition"
+            >
+              Hire me
+            </a>
+            <button
+              aria-label="Toggle menu"
+              onClick={() => setOpen((o) => !o)}
+              className="md:hidden text-white/80 p-2 -mr-2"
+            >
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                {open ? (
+                  <path d="M6 6l12 12M6 18L18 6" />
+                ) : (
+                  <>
+                    <path d="M3 6h18" />
+                    <path d="M3 12h18" />
+                    <path d="M3 18h18" />
+                  </>
+                )}
+              </svg>
+            </button>
+          </div>
         </div>
 
         {open && (
@@ -91,6 +103,27 @@ export function Navbar() {
                   </a>
                 </li>
               ))}
+              <li>
+                <a
+                  href="#contact"
+                  onClick={() => setOpen(false)}
+                  className="block py-2 text-white/80"
+                >
+                  Contact
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/hire"
+                  onClick={() => {
+                    trackHireMeClick("portfolio_navbar_mobile");
+                    setOpen(false);
+                  }}
+                  className="block py-2 text-[var(--color-accent-2)] font-medium"
+                >
+                  Hire me →
+                </a>
+              </li>
             </ul>
           </motion.div>
         )}

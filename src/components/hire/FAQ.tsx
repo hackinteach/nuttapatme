@@ -6,7 +6,7 @@ import { faqs } from "../../hire-data";
 export function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
   return (
-    <section className="relative py-24 sm:py-32 border-t border-white/5">
+    <section id="faq" className="relative py-24 sm:py-32 border-t border-white/5">
       <div className="max-w-3xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
