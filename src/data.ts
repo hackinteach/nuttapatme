@@ -8,7 +8,7 @@ export const profile = {
   // email is intentionally not stored in plain text — see src/lib/email.ts
   github: "https://github.com/hackinteach",
   linkedin: "https://www.linkedin.com/in/nuttapat-koo/",
-  site: "https://nuttapat.me",
+  site: "https://nuttapatk.dev",
   location: "Bangkok, Thailand",
 };
 

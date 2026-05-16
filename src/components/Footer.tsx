@@ -7,7 +7,7 @@ export function Footer() {
         <p>© {new Date().getFullYear()} {profile.name}</p>
         <p>
           Built with React + Framer Motion · hosted at{" "}
-          <span className="text-white/60">nuttapat.me</span>
+          <span className="text-white/60">nuttapatk.dev</span>
         </p>
       </div>
     </footer>

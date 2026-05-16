@@ -1,11 +1,12 @@
 // Anti-scraping helpers. The email is never written to the DOM verbatim
 // and never appears as a `mailto:` href until the user actually interacts.
 
+// User/domain are stored ROT13 + reversed. decode() is the inverse.
+// Do not document the cleartext in this file — that defeats the purpose
+// in a public repo.
 const PARTS = {
-  // Stored ROT13 + reversed so static crawlers reading bundled JS can't grep for it either.
-  // Original: "webmaster" / "hackinteach.com"
-  u: "ergfnzorj", // "webmaster" reversed then rot13 -> see decode()
-  d: "zbp.upnrgavxpnu", // "hackinteach.com" reversed then rot13
+  u: "ergfnzorj",
+  d: "zbp.upnrgavxpnu",
 };
 
 function rot13(s: string) {
