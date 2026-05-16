@@ -130,6 +130,12 @@ export function Hero() {
             >
               Get in touch
             </a>
+            <a
+              href="/hire"
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-full glass text-white font-medium hover:bg-white/5 transition"
+            >
+              Hire me →
+            </a>
           </motion.div>
         </motion.div>
 
