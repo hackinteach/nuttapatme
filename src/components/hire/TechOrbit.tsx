@@ -18,8 +18,6 @@ type OrbItem = {
   label: string;
 };
 
-// Two concentric rings, counter-rotating. Inner = container runtime tier,
-// outer = platform/automation tier.
 const INNER_RING: OrbItem[] = [
   { icon: siKubernetes, label: "K8s" },
   { icon: siDocker, label: "Docker" },
@@ -34,11 +32,12 @@ const OUTER_RING: OrbItem[] = [
   { icon: siArgo, label: "Argo" },
 ];
 
-const INNER_RADIUS_PCT = 28; // % of container — small enough to fit inside outer ring
-const OUTER_RADIUS_PCT = 46;
+// Radii as a percent of the half-container, so 30 means "30% from center toward edge".
+const INNER_RADIUS_PCT = 28;
+const OUTER_RADIUS_PCT = 42;
 
-const INNER_DURATION = 32; // seconds for full rotation
-const OUTER_DURATION = 48;
+const INNER_DURATION = 36; // seconds
+const OUTER_DURATION = 56;
 
 function IconBadge({ item }: { item: OrbItem }) {
   const { icon, label } = item;
@@ -65,8 +64,16 @@ function IconBadge({ item }: { item: OrbItem }) {
   );
 }
 
-/** Places `count` items evenly around a circle of `radiusPct`% within the parent. */
-function placed(items: OrbItem[], radiusPct: number, counterRotateDuration: number) {
+/**
+ * Renders items evenly distributed on a circle of `radiusPct`% of the half-container.
+ * Each badge counter-rotates to stay upright while the parent ring rotates.
+ */
+function placeOnRing(
+  items: OrbItem[],
+  radiusPct: number,
+  parentRotationDeg: number,
+  durationSec: number,
+) {
   return items.map((item, i) => {
     const angle = (i / items.length) * 2 * Math.PI;
     const x = Math.cos(angle) * radiusPct;
@@ -74,15 +81,16 @@ function placed(items: OrbItem[], radiusPct: number, counterRotateDuration: numb
     return (
       <div
         key={item.label}
-        className="absolute top-1/2 left-1/2"
+        className="absolute"
         style={{
-          transform: `translate(calc(-50% + ${x}%), calc(-50% + ${y}%))`,
+          top: `${50 + y}%`,
+          left: `${50 + x}%`,
+          transform: "translate(-50%, -50%)",
         }}
       >
-        {/* Counter-rotate to keep the badge upright while the parent rotates. */}
         <motion.div
-          animate={{ rotate: -360 }}
-          transition={{ duration: counterRotateDuration, repeat: Infinity, ease: "linear" }}
+          animate={{ rotate: -parentRotationDeg }}
+          transition={{ duration: durationSec, repeat: Infinity, ease: "linear" }}
         >
           <IconBadge item={item} />
         </motion.div>
@@ -95,9 +103,9 @@ export function TechOrbit() {
   return (
     <div className="relative w-full aspect-square max-w-[520px] mx-auto select-none">
       {/* Concentric ring guides */}
-      <div className="absolute inset-[7%] rounded-full border border-white/[0.06]" />
-      <div className="absolute inset-[20%] rounded-full border border-white/[0.07]" />
-      <div className="absolute inset-[36%] rounded-full border border-white/[0.08]" />
+      <div className="absolute inset-[8%] rounded-full border border-white/[0.06]" />
+      <div className="absolute inset-[22%] rounded-full border border-white/[0.07]" />
+      <div className="absolute inset-[38%] rounded-full border border-white/[0.08]" />
 
       {/* Soft radial glow behind the hub */}
       <div className="absolute inset-[36%] rounded-full bg-[var(--color-accent)]/10 blur-2xl" />
@@ -114,22 +122,22 @@ export function TechOrbit() {
         </motion.div>
       </div>
 
-      {/* Outer ring (slower, clockwise) */}
+      {/* Outer ring — clockwise */}
       <motion.div
         className="absolute inset-0"
         animate={{ rotate: 360 }}
         transition={{ duration: OUTER_DURATION, repeat: Infinity, ease: "linear" }}
       >
-        {placed(OUTER_RING, OUTER_RADIUS_PCT, OUTER_DURATION)}
+        {placeOnRing(OUTER_RING, OUTER_RADIUS_PCT, 360, OUTER_DURATION)}
       </motion.div>
 
-      {/* Inner ring (faster, counter-clockwise) */}
+      {/* Inner ring — counter-clockwise */}
       <motion.div
         className="absolute inset-0"
         animate={{ rotate: -360 }}
         transition={{ duration: INNER_DURATION, repeat: Infinity, ease: "linear" }}
       >
-        {placed(INNER_RING, INNER_RADIUS_PCT, -INNER_DURATION)}
+        {placeOnRing(INNER_RING, INNER_RADIUS_PCT, -360, INNER_DURATION)}
       </motion.div>
     </div>
   );
