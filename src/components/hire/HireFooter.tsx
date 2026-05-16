@@ -1,4 +1,5 @@
 import { profile } from "../../data";
+import { openCookieSettings } from "../../lib/consent";
 
 export function HireFooter() {
   return (
@@ -18,6 +19,11 @@ export function HireFooter() {
             <a href={profile.github} target="_blank" rel="noreferrer" className="hover:text-white/70">
               GitHub
             </a>
+          </li>
+          <li>
+            <button type="button" onClick={openCookieSettings} className="hover:text-white/70">
+              Cookie settings
+            </button>
           </li>
         </ul>
       </div>

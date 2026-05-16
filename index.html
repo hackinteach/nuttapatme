@@ -5,6 +5,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#0a0a0f" />
 
+    <!--
+      Consent Mode v2 + Cookiebot + GTM
+      Order is load-order critical: default consent -> Cookiebot -> GTM.
+      Cookiebot's data-blockingmode="auto" auto-blocks tags from GTM that
+      need consent, and forwards user choices to gtag('consent','update').
+      Production-domain gate prevents firing on dev/preview environments.
+      TODOs: replace YOUR_COOKIEBOT_CBID and GTM-XXXXXXX with real IDs.
+    -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){window.dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        analytics_storage: 'denied',
+        functionality_storage: 'denied',
+        personalization_storage: 'denied',
+        security_storage: 'granted',
+        wait_for_update: 500
+      });
+      gtag('set', 'ads_data_redaction', true);
+      gtag('set', 'url_passthrough', true);
+    </script>
+    <script>
+      (function(){
+        var host = location.hostname;
+        if (host !== 'nuttapatk.dev' && host !== 'www.nuttapatk.dev') return;
+
+        // Cookiebot CMP
+        var cb = document.createElement('script');
+        cb.id = 'Cookiebot';
+        cb.src = 'https://consent.cookiebot.com/uc.js';
+        cb.setAttribute('data-cbid', 'YOUR_COOKIEBOT_CBID');
+        cb.setAttribute('data-blockingmode', 'auto');
+        cb.async = true;
+        document.head.appendChild(cb);
+
+        // Google Tag Manager
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-XXXXXXX');
+      })();
+    </script>
+
     <title>Nuttapat Koonarangsri — Senior Software Engineer · Go, Kubernetes, GCP</title>
     <meta
       name="description"
@@ -92,6 +139,14 @@
     </script>
   </head>
   <body>
+    <!-- GTM noscript fallback (only meaningful on production domain) -->
+    <noscript>
+      <iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
+        height="0" width="0" style="display:none;visibility:hidden"
+        title="Google Tag Manager"
+      ></iframe>
+    </noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
     <noscript>
