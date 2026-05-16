@@ -97,6 +97,7 @@ export const credentials = [
 export const trustedBy = [
   "Enterprise SaaS",
   "Fortune 500 Insurance",
+  "Government / Public Health",
   "Software Consultancy",
   "Industrial / Manufacturing",
   "Higher Education & Research",

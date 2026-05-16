@@ -121,6 +121,26 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    title: "Apigee API Gateway — Implementation & Load Testing",
+    stack: ["Apigee", "GCP", "k6", "Jenkins"],
+    summary: "Production API gateway rollout with capacity validation.",
+    bullets: [
+      "Designed and deployed Apigee proxy/target configurations (auth, rate-limit, traffic shaping).",
+      "Built k6 load-test scenarios to validate RPS and latency budgets before go-live.",
+      "Reported capacity ceilings and tuned policies to clear them.",
+    ],
+  },
+  {
+    title: "On-prem Kubernetes for Public Health Sector",
+    stack: ["Kubernetes", "Ansible", "Linux", "On-prem networking"],
+    summary: "Air-gapped K8s cluster for a national public-health initiative.",
+    bullets: [
+      "Bootstrapped and hardened a production K8s cluster on bare-metal in a restricted-network environment.",
+      "Wrote Ansible playbooks for repeatable setup and disaster recovery.",
+      "Documented runbooks and trained the in-house team to own it post-handoff.",
+    ],
+  },
+  {
     title: "Smart Home Controller Model",
     stack: ["Spring Boot", "ReactJS", "Docker", "Arduino"],
     url: "https://github.com/hackinteach/layzliving",
