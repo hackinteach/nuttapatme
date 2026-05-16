@@ -54,7 +54,7 @@ export function PrivacyPage() {
         <Section title="Who I am">
           <p>
             This site, <strong>nuttapatk.dev</strong>, is operated by Nuttapat
-            Koonarangsri, an individual based in Bangkok, Thailand. For any
+            K., an individual based in Bangkok, Thailand. For any
             privacy question or data request, contact me at{" "}
             <span className="font-mono text-white/85">{EMAIL_DISPLAY}</span>.
           </p>

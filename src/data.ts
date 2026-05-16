@@ -1,5 +1,5 @@
 export const profile = {
-  name: "Nuttapat Koonarangsri",
+  name: "Nuttapat K",
   alias: "hackinteach",
   title: "Senior Software Engineer",
   tagline: "Backend, cloud infrastructure, and the occasional pixel.",
