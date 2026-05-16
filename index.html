@@ -11,7 +11,7 @@
       Cookiebot's data-blockingmode="auto" auto-blocks tags from GTM that
       need consent, and forwards user choices to gtag('consent','update').
       Production-domain gate prevents firing on dev/preview environments.
-      TODOs: replace YOUR_COOKIEBOT_CBID and GTM-XXXXXXX with real IDs.
+      Production-domain gate prevents firing on dev/preview environments.
     -->
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -38,7 +38,7 @@
         var cb = document.createElement('script');
         cb.id = 'Cookiebot';
         cb.src = 'https://consent.cookiebot.com/uc.js';
-        cb.setAttribute('data-cbid', 'YOUR_COOKIEBOT_CBID');
+        cb.setAttribute('data-cbid', '99d877b6-9a4e-4283-b153-4b1b8025c8c5');
         cb.setAttribute('data-blockingmode', 'auto');
         cb.async = true;
         document.head.appendChild(cb);
@@ -48,7 +48,7 @@
         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
         j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-XXXXXXX');
+        })(window,document,'script','dataLayer','GTM-5T2973JX');
       })();
     </script>
 
@@ -142,7 +142,7 @@
     <!-- GTM noscript fallback (only meaningful on production domain) -->
     <noscript>
       <iframe
-        src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
+        src="https://www.googletagmanager.com/ns.html?id=GTM-5T2973JX"
         height="0" width="0" style="display:none;visibility:hidden"
         title="Google Tag Manager"
       ></iframe>

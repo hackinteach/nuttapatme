@@ -19,8 +19,7 @@ export function PrivacyPage() {
 
     const s = document.createElement("script");
     s.id = "CookieDeclaration";
-    // TODO: replace YOUR_COOKIEBOT_CBID with your real CBID
-    s.src = "https://consent.cookiebot.com/YOUR_COOKIEBOT_CBID/cd.js";
+    s.src = "https://consent.cookiebot.com/99d877b6-9a4e-4283-b153-4b1b8025c8c5/cd.js";
     s.type = "text/javascript";
     s.async = true;
     declRef.current.appendChild(s);
