@@ -53,10 +53,10 @@ export type ExperienceItem = {
 
 export const experience: ExperienceItem[] = [
   {
-    company: "CertuSystems",
+    company: "Enterprise SaaS Company",
     role: "Senior Software Engineer",
     period: "Aug 2022 — Present",
-    location: "Thailand",
+    location: "Thailand · name withheld",
     bullets: [
       "Building backend services in Go.",
       "Managing GCP services with Terragrunt and Terraform.",
