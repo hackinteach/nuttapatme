@@ -4,17 +4,12 @@ import { Cookie, X } from "lucide-react";
 import {
   ACCEPT_ALL,
   REJECT_ALL,
+  CONSENT_RENEW_EVENT,
+  applyStoredConsent,
   hasUserDecided,
   submitConsent,
   type ConsentChoice,
 } from "../lib/consent";
-
-// Cookiebot fires these custom events on window. We use them to know when
-// the API is ready and to react to a renewal triggered from the footer.
-const EVT_READY = "CookiebotOnDialogInit";
-const EVT_DISPLAY = "CookiebotOnDialogDisplay";
-const EVT_ACCEPT = "CookiebotOnAccept";
-const EVT_DECLINE = "CookiebotOnDecline";
 
 export function CookieBanner() {
   const [visible, setVisible] = useState(false);
@@ -26,25 +21,18 @@ export function CookieBanner() {
   });
 
   useEffect(() => {
-    // If the user has already decided, stay hidden. If Cookiebot is missing
-    // (dev/preview/adblocked), also stay hidden — the page already works
-    // because the default consent state is "denied everything".
-    function evaluate() {
-      if (typeof window === "undefined") return;
-      if (!window.Cookiebot) return;
-      setVisible(!hasUserDecided());
+    // On mount: forward any saved consent into gtag for this fresh page
+    // (Consent Mode default starts denied). Show banner only if no choice.
+    applyStoredConsent();
+    setVisible(!hasUserDecided());
+
+    function onRenew() {
+      setExpanded(false);
+      setChoice({ preferences: false, statistics: false, marketing: false });
+      setVisible(true);
     }
-
-    // Initial check + react to Cookiebot lifecycle events.
-    evaluate();
-    window.addEventListener(EVT_READY, evaluate);
-    window.addEventListener(EVT_DISPLAY, () => setVisible(true)); // footer "Cookie settings" triggers renew -> display
-    window.addEventListener(EVT_ACCEPT, () => setVisible(false));
-    window.addEventListener(EVT_DECLINE, () => setVisible(false));
-
-    return () => {
-      window.removeEventListener(EVT_READY, evaluate);
-    };
+    window.addEventListener(CONSENT_RENEW_EVENT, onRenew);
+    return () => window.removeEventListener(CONSENT_RENEW_EVENT, onRenew);
   }, []);
 
   function apply(c: ConsentChoice) {

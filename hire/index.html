@@ -5,15 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#0a0a0f" />
 
-    <!--
-      Consent Mode v2 + Cookiebot + GTM
-      Same setup as / (see index.html for explanation). The conversion
-      tag for Google Ads ends up firing through GTM, gated by user consent.
-    -->
+    <!-- Consent Mode v2 + GTM. See index.html for the rationale. -->
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){window.dataLayer.push(arguments);}
-      gtag('consent', 'default', {
+      window.gtag = function(){window.dataLayer.push(arguments);}
+      window.gtag('consent', 'default', {
         ad_storage: 'denied',
         ad_user_data: 'denied',
         ad_personalization: 'denied',
@@ -23,21 +19,13 @@
         security_storage: 'granted',
         wait_for_update: 500
       });
-      gtag('set', 'ads_data_redaction', true);
-      gtag('set', 'url_passthrough', true);
+      window.gtag('set', 'ads_data_redaction', true);
+      window.gtag('set', 'url_passthrough', true);
     </script>
     <script>
       (function(){
         var host = location.hostname;
         if (host !== 'nuttapatk.dev' && host !== 'www.nuttapatk.dev') return;
-
-        var cb = document.createElement('script');
-        cb.id = 'Cookiebot';
-        cb.src = 'https://consent.cookiebot.com/uc.js';
-        cb.setAttribute('data-cbid', '99d877b6-9a4e-4283-b153-4b1b8025c8c5');
-        cb.setAttribute('data-blockingmode', 'auto');
-        cb.async = true;
-        document.head.appendChild(cb);
 
         (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -112,7 +100,7 @@
     <!--
       Google Ads conversion fires through GTM (loaded above), not as a
       separate gtag snippet. Create the conversion tag inside your GTM
-      container with a Consent Type of "Marketing" so Cookiebot can gate it.
+      container with a Consent Type of "Marketing" so Consent Mode v2 can gate it.
     -->
   </head>
   <body>

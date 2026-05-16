@@ -1,31 +1,44 @@
-import { useEffect, useRef } from "react";
 import { Footer } from "./components/Footer";
 import { Navbar } from "./components/Navbar";
 import { CookieBanner } from "./components/CookieBanner";
 import { EMAIL_DISPLAY } from "./lib/email";
 
-// Last reviewed date — bump when the policy materially changes.
+// Bump when the policy materially changes.
 const LAST_UPDATED = "May 2026";
 
+// Static cookie list. Update by hand when adding new vendors or tags.
+const COOKIES: { name: string; vendor: string; purpose: string; expiry: string; category: "Necessary" | "Statistics" | "Marketing" }[] = [
+  {
+    name: "consent-v1",
+    vendor: "nuttapatk.dev (first-party)",
+    purpose: "Stores your cookie banner choice so the banner doesn't reappear on every visit.",
+    expiry: "Persistent (until you click 'Cookie settings')",
+    category: "Necessary",
+  },
+  {
+    name: "_ga",
+    vendor: "Google Analytics",
+    purpose: "Distinguishes unique visitors for aggregate traffic measurement.",
+    expiry: "2 years",
+    category: "Statistics",
+  },
+  {
+    name: "_ga_GVX8Q4S7W6",
+    vendor: "Google Analytics",
+    purpose: "Persists session state for GA4.",
+    expiry: "2 years",
+    category: "Statistics",
+  },
+  {
+    name: "_gcl_au",
+    vendor: "Google Ads",
+    purpose: "Conversion attribution — tells Google Ads if a click led to a booking.",
+    expiry: "90 days",
+    category: "Marketing",
+  },
+];
+
 export function PrivacyPage() {
-  const declRef = useRef<HTMLDivElement>(null);
-
-  // Inject the Cookiebot-generated cookie list once the page is mounted.
-  // Cookiebot serves a per-CBID script at /CBID/cd.js that renders the
-  // current cookie table into wherever the script tag is placed.
-  useEffect(() => {
-    const host = window.location.hostname;
-    if (host !== "nuttapatk.dev" && host !== "www.nuttapatk.dev") return;
-    if (!declRef.current || declRef.current.querySelector("#CookieDeclaration")) return;
-
-    const s = document.createElement("script");
-    s.id = "CookieDeclaration";
-    s.src = "https://consent.cookiebot.com/99d877b6-9a4e-4283-b153-4b1b8025c8c5/cd.js";
-    s.type = "text/javascript";
-    s.async = true;
-    declRef.current.appendChild(s);
-  }, []);
-
   return (
     <>
       <Navbar />
@@ -97,14 +110,39 @@ export function PrivacyPage() {
           <p>
             A cookie banner asks for your choice on first visit. You can change
             it any time using the <strong>Cookie settings</strong> link in the
-            footer. The current list of cookies actually set on this site (kept
-            up to date automatically by Cookiebot):
+            footer. Your choice is stored in your browser's localStorage — no
+            third-party consent service is involved.
           </p>
-          <div ref={declRef} className="not-prose mt-4 rounded-xl border border-white/10 bg-white/[0.02] p-4 text-sm text-white/70 min-h-[80px]">
-            <p className="text-white/40">
-              Cookie list loads from Cookiebot. On dev/preview, this stays empty.
-            </p>
+          <div className="not-prose mt-4 overflow-x-auto rounded-xl border border-white/10">
+            <table className="w-full text-sm">
+              <thead className="bg-white/[0.04] text-white/60 font-mono uppercase text-[10px] tracking-wider">
+                <tr>
+                  <th className="text-left p-3">Name</th>
+                  <th className="text-left p-3">Vendor</th>
+                  <th className="text-left p-3">Category</th>
+                  <th className="text-left p-3">Expiry</th>
+                </tr>
+              </thead>
+              <tbody>
+                {COOKIES.map((c) => (
+                  <tr key={c.name} className="border-t border-white/5 align-top">
+                    <td className="p-3 font-mono text-xs text-white/85">{c.name}</td>
+                    <td className="p-3 text-white/70">
+                      <div>{c.vendor}</div>
+                      <div className="text-xs text-white/50 mt-1">{c.purpose}</div>
+                    </td>
+                    <td className="p-3 text-white/60 whitespace-nowrap">{c.category}</td>
+                    <td className="p-3 text-white/60 whitespace-nowrap">{c.expiry}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
+          <p className="text-sm text-white/55 mt-3">
+            Reject Statistics or Marketing and the corresponding cookies above
+            are simply not set. The Necessary cookie above is required for the
+            banner to remember your choice and cannot be disabled.
+          </p>
         </Section>
 
         <Section title="Who I share data with">
@@ -116,7 +154,6 @@ export function PrivacyPage() {
             <li><strong>Vercel</strong> — hosting and CDN for this site.</li>
             <li><strong>Cloudflare</strong> — DNS for the nuttapatk.dev domain.</li>
             <li><strong>Google</strong> — Google Tag Manager, Google Analytics 4, Google Ads (only with consent).</li>
-            <li><strong>Cookiebot (Cybot A/S)</strong> — consent management.</li>
             <li><strong>Cal.com</strong> — scheduling, only if you book an intro call.</li>
           </ul>
         </Section>

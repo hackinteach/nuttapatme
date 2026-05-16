@@ -8,8 +8,8 @@
     <!-- Same consent + GTM bootstrap as the other entry points -->
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){window.dataLayer.push(arguments);}
-      gtag('consent', 'default', {
+      window.gtag = function(){window.dataLayer.push(arguments);}
+      window.gtag('consent', 'default', {
         ad_storage: 'denied',
         ad_user_data: 'denied',
         ad_personalization: 'denied',
@@ -19,21 +19,13 @@
         security_storage: 'granted',
         wait_for_update: 500
       });
-      gtag('set', 'ads_data_redaction', true);
-      gtag('set', 'url_passthrough', true);
+      window.gtag('set', 'ads_data_redaction', true);
+      window.gtag('set', 'url_passthrough', true);
     </script>
     <script>
       (function(){
         var host = location.hostname;
         if (host !== 'nuttapatk.dev' && host !== 'www.nuttapatk.dev') return;
-
-        var cb = document.createElement('script');
-        cb.id = 'Cookiebot';
-        cb.src = 'https://consent.cookiebot.com/uc.js';
-        cb.setAttribute('data-cbid', '99d877b6-9a4e-4283-b153-4b1b8025c8c5');
-        cb.setAttribute('data-blockingmode', 'auto');
-        cb.async = true;
-        document.head.appendChild(cb);
 
         (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -57,7 +49,7 @@
       <div style="padding:48px;max-width:760px;margin:0 auto;font-family:system-ui;color:#e7e7ee;background:#0a0a0f;line-height:1.6;">
         <h1>Privacy Policy</h1>
         <p>This is the JS-disabled fallback. The full version is at <a href="https://nuttapatk.dev/privacy">nuttapatk.dev/privacy</a>.</p>
-        <p><strong>Summary:</strong> nuttapatk.dev collects no personal data unless you contact me directly or consent to analytics/advertising cookies via the banner. Third parties used: Google Tag Manager, Google Ads, Cookiebot (consent), Vercel (hosting). Withdraw consent any time via "Cookie settings" in the footer. Data requests: webmaster [at] hackinteach [dot] com.</p>
+        <p><strong>Summary:</strong> nuttapatk.dev collects no personal data unless you contact me directly or consent to analytics/advertising cookies via the banner. Third parties used: Google Tag Manager, Google Analytics, Google Ads, Vercel (hosting), Cloudflare (DNS). Withdraw consent any time via "Cookie settings" in the footer. Data requests: webmaster [at] hackinteach [dot] com.</p>
       </div>
     </noscript>
     <div id="root"></div>

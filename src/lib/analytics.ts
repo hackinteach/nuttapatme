@@ -4,12 +4,6 @@
 
 type DataLayerEvent = Record<string, unknown> & { event: string };
 
-declare global {
-  interface Window {
-    dataLayer?: DataLayerEvent[];
-  }
-}
-
 function push(event: DataLayerEvent): void {
   if (typeof window === "undefined") return;
   // dataLayer is initialized inline in index.html. Falling back is safe.
