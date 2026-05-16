@@ -1,9 +1,8 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform, type Variants } from "framer-motion";
-import { Mail, MapPin, ArrowDown } from "lucide-react";
+import { MapPin, ArrowDown } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "./icons";
 import { profile } from "../data";
-import { openMail } from "../lib/email";
 import { trackHireMeClick } from "../lib/analytics";
 
 const container: Variants = {
@@ -107,14 +106,6 @@ export function Hero() {
             <a href={profile.linkedin} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 hover:text-white">
               <LinkedinIcon width={14} height={14} /> LinkedIn
             </a>
-            <span className="text-white/20">·</span>
-            <button
-              type="button"
-              onClick={openMail}
-              className="inline-flex items-center gap-1.5 hover:text-white cursor-pointer"
-            >
-              <Mail size={14} /> email
-            </button>
           </motion.div>
 
           <motion.div variants={item} className="flex flex-wrap gap-3 pt-4">
