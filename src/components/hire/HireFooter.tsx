@@ -1,34 +1,41 @@
 import { profile } from "../../data";
 import { openCookieSettings } from "../../lib/consent";
+import { DeployInfo } from "../DeployInfo";
 
 export function HireFooter() {
   return (
     <footer className="border-t border-white/5 py-8">
-      <div className="max-w-6xl mx-auto px-6 flex flex-wrap items-center justify-between gap-3 text-xs text-white/40 font-mono">
-        <p>© {new Date().getFullYear()} {profile.name}</p>
-        <ul className="flex flex-wrap gap-4">
-          <li>
-            <a href="/" className="hover:text-white/70">Portfolio</a>
-          </li>
-          <li>
-            <a href={profile.linkedin} target="_blank" rel="noreferrer" className="hover:text-white/70">
-              LinkedIn
-            </a>
-          </li>
-          <li>
-            <a href={profile.github} target="_blank" rel="noreferrer" className="hover:text-white/70">
-              GitHub
-            </a>
-          </li>
-          <li>
-            <a href="/privacy" className="hover:text-white/70">Privacy</a>
-          </li>
-          <li>
-            <button type="button" onClick={openCookieSettings} className="hover:text-white/70">
-              Cookie settings
-            </button>
-          </li>
-        </ul>
+      <div className="max-w-6xl mx-auto px-6 grid gap-3 text-xs text-white/40 font-mono">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <p>© {new Date().getFullYear()} {profile.name}</p>
+          <ul className="flex flex-wrap items-center gap-4">
+            <li>
+              <a href="/" className="hover:text-white/70">Portfolio</a>
+            </li>
+            <li>
+              <a href={profile.linkedin} target="_blank" rel="noreferrer" className="hover:text-white/70">
+                LinkedIn
+              </a>
+            </li>
+            <li>
+              <a href={profile.github} target="_blank" rel="noreferrer" className="hover:text-white/70">
+                GitHub
+              </a>
+            </li>
+            <li>
+              <a href="/privacy" className="hover:text-white/70">Privacy</a>
+            </li>
+            <li>
+              <button type="button" onClick={openCookieSettings} className="hover:text-white/70">
+                Cookie settings
+              </button>
+            </li>
+            <li className="hidden sm:inline text-white/20">·</li>
+            <li>
+              <DeployInfo />
+            </li>
+          </ul>
+        </div>
       </div>
     </footer>
   );

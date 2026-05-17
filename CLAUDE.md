@@ -167,6 +167,17 @@ climb above 90):
   existing `book_call_click` triggers) so form conversions roll up
   to Google Ads
 
+## Status endpoint + footer deploy info
+
+- `GET /api/status` returns a JSON service-status payload (build SHA,
+  branch, region, processors, security-header summary, link map).
+  Public, CORS-friendly, 60s cache. Acts as an easter egg for devs
+  poking around and as a sanity-check during deploys.
+- `<DeployInfo />` (in both footers) shows `branch@sha · deployed Nh ago`
+  with a pulsing green dot, clickable to `/api/status`. Build-time
+  constants come from Vite's `define` reading Vercel's `VERCEL_GIT_*`
+  env vars; on local dev they fall back to `local@dev`.
+
 ## When the user shares a PSI PDF
 
 They land in `~/Downloads/PageSpeed Insights-{desktop,mobile}{-N}.pdf`.

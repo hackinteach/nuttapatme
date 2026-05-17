@@ -37,7 +37,19 @@ function preloadCriticalFont(): Plugin {
   };
 }
 
+// Build-time constants injected into the bundle so the footer can show
+// the live commit/branch/build-time without an extra runtime fetch.
+// Vercel populates VERCEL_GIT_COMMIT_* automatically at build.
+const BUILD_SHA = (process.env.VERCEL_GIT_COMMIT_SHA ?? 'dev').slice(0, 7);
+const BUILD_BRANCH = process.env.VERCEL_GIT_COMMIT_REF ?? 'local';
+const BUILD_TIME = new Date().toISOString();
+
 export default defineConfig({
+  define: {
+    __BUILD_SHA__: JSON.stringify(BUILD_SHA),
+    __BUILD_BRANCH__: JSON.stringify(BUILD_BRANCH),
+    __BUILD_TIME__: JSON.stringify(BUILD_TIME),
+  },
   plugins: [react(), tailwindcss(), preloadCriticalFont()],
   build: {
     rollupOptions: {
