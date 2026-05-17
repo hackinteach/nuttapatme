@@ -117,14 +117,22 @@ vite.config.ts                                    ← multi-page input, vendor c
 
 Set on Vercel project → Settings → Environment Variables:
 
+**Required — without these the form returns 503:**
+
 - `RESEND_API_KEY` — from resend.com (free tier 3k/mo)
 - `CONTACT_FROM_EMAIL` — must be on a Resend-verified domain, e.g.
   `contact@nuttapatk.dev`. Until domain verified, can fall back to
   `onboarding@resend.dev`
 - `CONTACT_TO_EMAIL` — where messages land (your inbox)
 
-Without all three set, `POST /api/contact` returns 503 and the form
-shows a fallback "email me directly" message with the obfuscated email.
+**Required for rate limiting — without these the function fails open
+(allows all requests, logs a warning):**
+
+- `UPSTASH_REDIS_REST_URL` — from upstash.com Redis dashboard
+- `UPSTASH_REDIS_REST_TOKEN` — from same Upstash dashboard
+
+Rate limit is 3 sends per rolling hour per IP. Bypass attempts return
+HTTP 429 with `Retry-After` header.
 
 ## Performance baseline (last PSI run)
 
