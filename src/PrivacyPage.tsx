@@ -78,9 +78,10 @@ export function PrivacyPage() {
               Manager — only if you consent to <em>Marketing</em> cookies.
             </li>
             <li>
-              <strong>Content you send me</strong> — if you email me or book a
-              call, that conversation and any details you share are processed by
-              me and by the tools I use to communicate (mail provider, scheduler).
+              <strong>Content you send me</strong> — if you submit the contact
+              form, email me, or book a call, that message and any details you
+              share are processed by me and by the tools I use to communicate
+              (Resend for delivery, my mail provider, Cal.com if scheduling).
             </li>
           </ul>
           <p>
@@ -156,6 +157,7 @@ export function PrivacyPage() {
             <li><strong>Cloudflare</strong> — DNS for the nuttapatk.dev domain.</li>
             <li><strong>Google</strong> — Google Tag Manager, Google Analytics 4, Google Ads (only with consent).</li>
             <li><strong>Cal.com</strong> — scheduling, only if you book an intro call.</li>
+            <li><strong>Resend</strong> — email delivery for the contact form. Your name, email, optional subject, and message are sent to my inbox via Resend's API. No persistent storage on their side beyond standard email-delivery logs.</li>
           </ul>
         </Section>
 

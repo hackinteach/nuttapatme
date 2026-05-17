@@ -73,26 +73,26 @@ export function HireHero() {
 
           <motion.div variants={item} className="flex flex-wrap gap-3 pt-4">
             <a
+              href="#contact"
+              className="group inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white text-black font-medium hover:bg-white/90 transition"
+            >
+              Send a message
+              <ArrowRight size={16} className="group-hover:translate-x-0.5 transition-transform" />
+            </a>
+            <a
               href={hire.bookingUrl}
               target="_blank"
               rel="noreferrer"
               onClick={() => trackBookCallClick("hire_hero")}
-              className="group inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white text-black font-medium hover:bg-white/90 transition"
-            >
-              <Calendar size={18} />
-              Book a free 20-min intro call
-              <ArrowRight size={16} className="group-hover:translate-x-0.5 transition-transform" />
-            </a>
-            <a
-              href="#services"
               className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full glass text-white font-medium hover:bg-white/5 transition"
             >
-              See what I do
+              <Calendar size={16} />
+              Or book a call
             </a>
           </motion.div>
 
           <motion.p variants={item} className="text-xs text-white/40 font-mono">
-            No sales call. No deck. We talk through your problem and figure out if I'm the right fit.
+            I reply to messages within a day. No sales call, no deck — just a clear next step.
           </motion.p>
         </motion.div>
 

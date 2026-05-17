@@ -20,3 +20,8 @@ export function trackBookCallClick(source: string): void {
 export function trackHireMeClick(source: string): void {
   push({ event: "hire_me_click", source });
 }
+
+/** Fired when a visitor successfully submits the contact form. */
+export function trackContactFormSubmit(source: string): void {
+  push({ event: "contact_form_submit", source });
+}

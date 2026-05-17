@@ -113,6 +113,19 @@ vite.config.ts                                    ← multi-page input, vendor c
 - GA4 measurement: `G-GVX8Q4S7W6` (configured inside GTM, not in HTML)
 - Cookiebot: **REMOVED** — do not reintroduce
 
+## Vercel env vars (contact form)
+
+Set on Vercel project → Settings → Environment Variables:
+
+- `RESEND_API_KEY` — from resend.com (free tier 3k/mo)
+- `CONTACT_FROM_EMAIL` — must be on a Resend-verified domain, e.g.
+  `contact@nuttapatk.dev`. Until domain verified, can fall back to
+  `onboarding@resend.dev`
+- `CONTACT_TO_EMAIL` — where messages land (your inbox)
+
+Without all three set, `POST /api/contact` returns 503 and the form
+shows a fallback "email me directly" message with the obfuscated email.
+
 ## Performance baseline (last PSI run)
 
 - Desktop Perf 75, FCP 0.4s, LCP 0.5s, TBT 590ms, CLS 0
@@ -134,11 +147,17 @@ climb above 90):
 - `public/og.png` (1200×630) for social-share previews — currently 404s
 - `public/apple-touch-icon.png` (180×180) — optional
 - `hire-data.ts` → `hire.bookingUrl` is `https://cal.com/nuttapatk`
-  (placeholder; user needs to register the Cal.com handle)
+  (placeholder; user needs to register the Cal.com handle). Cal.com is
+  now the *secondary* CTA — primary is the contact form.
 - Create GA4 + Ads conversion tags inside GTM dashboard (Initialization
   All-Pages trigger; Consent Setting = "No additional consent required"
   so Consent Mode v2 handles gating natively, NOT
   "Require additional consent")
+- Register Resend account, verify `nuttapatk.dev` domain, set the three
+  env vars above. Without these the contact form returns 503.
+- Add a GTM trigger for `contact_form_submit` event (alongside the
+  existing `book_call_click` triggers) so form conversions roll up
+  to Google Ads
 
 ## When the user shares a PSI PDF
 

@@ -34,6 +34,7 @@ client). Current employer is redacted from the public site.
 | Icons | `lucide-react` + `simple-icons` (brand) + inline SVG | Lucide for UI, simple-icons for tech-stack orbital |
 | Analytics | GA4 + Google Ads via GTM | Standard ads funnel |
 | RUM | Vercel Speed Insights | Real-user Core Web Vitals |
+| Contact form | Vercel Edge Function + Resend | Owned-by-us serverless route, no third-party form host |
 | Consent | Custom React banner + `gtag('consent', …)` via Consent Mode v2 | Cookiebot was tried and removed (see §6) |
 | Hosting | Vercel | Auto-deploy on push to `main` |
 | DNS | Cloudflare Registrar (DNS-only, no proxy) | Cleanest path to Vercel TLS |
@@ -146,9 +147,35 @@ Conversion events fire via `dataLayer.push`:
 - `book_call_click` with `source` = `hire_navbar` | `hire_hero` |
   `hire_final_cta` | `hire_advisory`
 - `hire_me_click` with `source` = `portfolio_hero` | `portfolio_navbar`
+- `contact_form_submit` with `source` = `portfolio_contact` | `hire_final`
 
 In GTM, create a Custom Event trigger on each event name and bind a
 Google Ads Conversion Tracking tag (Consent Settings: Marketing required).
+The contact-form submit is the primary conversion now — Cal.com is the
+secondary fallback.
+
+## 5b. Contact form
+
+The form is the primary conversion path. Cal.com sits below as a "or
+prefer a live call" secondary option.
+
+- **Component**: `src/components/ContactForm.tsx` — used in both
+  portfolio Contact section and /hire FinalCTA. Tagged with a `source`
+  prop that flows through to the dataLayer event.
+- **API**: `api/contact.ts` — Vercel Edge runtime function. Accepts
+  `POST /api/contact` with `{name, email, subject?, message, _website,
+  _renderedAt}`. Validates field lengths and email format. Two anti-spam
+  layers:
+  1. **Honeypot** field `_website` — rendered off-screen, hidden from
+     humans (`aria-hidden`, `tabindex=-1`). Bots fill it. If filled,
+     the server returns 200 silently — never tells the bot anything's
+     wrong.
+  2. **Time-trap** `_renderedAt` — humans can't realistically fill the
+     form in < 1.5s. Faster submissions get the same silent-200.
+  Also enforces `Origin` header against an allowlist (production +
+  Vercel previews + localhost dev).
+- **Mail delivery**: Resend SDK (`resend` package). From/to addresses
+  come from env vars — no hard-coded inboxes.
 
 ## 7. Performance journey
 

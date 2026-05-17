@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "./icons";
 import { profile } from "../data";
-import { EmailButton } from "./EmailButton";
+import { ContactForm } from "./ContactForm";
 
 export function Contact() {
   const ref = useRef<HTMLElement>(null);
@@ -13,7 +13,6 @@ export function Contact() {
   });
   const ringScale = useTransform(scrollYProgress, [0, 1], [0.7, 1.2]);
   const ringRotate = useTransform(scrollYProgress, [0, 1], [0, 90]);
-  const titleY = useTransform(scrollYProgress, [0, 1], [60, -60]);
 
   return (
     <section ref={ref} id="contact" className="relative py-32 overflow-hidden">
@@ -29,13 +28,13 @@ export function Contact() {
         <div className="absolute inset-48 rounded-full border border-white/5" />
       </motion.div>
 
-      <motion.div style={{ y: titleY }} className="relative max-w-3xl mx-auto px-6 text-center">
+      <div className="relative max-w-2xl mx-auto px-6">
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--color-accent-2)] mb-4"
+          className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--color-accent-2)] mb-4 text-center"
         >
           Get in touch
         </motion.p>
@@ -44,7 +43,7 @@ export function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.05 }}
-          className="text-4xl sm:text-6xl font-semibold tracking-tight gradient-text"
+          className="text-4xl sm:text-6xl font-semibold tracking-tight gradient-text text-center"
         >
           Let's build something.
         </motion.h2>
@@ -53,7 +52,7 @@ export function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="mt-5 text-white/65 max-w-xl mx-auto"
+          className="mt-5 text-white/65 max-w-xl mx-auto text-center"
         >
           Whether it's a Go service, GCP infra to wrangle, or a side-project idea — drop me a line.
         </motion.p>
@@ -63,33 +62,40 @@ export function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.15 }}
-          className="mt-10 flex flex-col items-center gap-3"
+          className="mt-10"
         >
-          <EmailButton variant="primary" />
-          <div className="flex flex-wrap items-center justify-center gap-3">
-            <a
-              href={profile.linkedin}
-              target="_blank"
-              rel="noreferrer"
-              className="group inline-flex items-center gap-2 px-5 py-3 rounded-full glass text-white font-medium hover:bg-white/5 transition"
-            >
-              <LinkedinIcon width={16} height={16} />
-              LinkedIn
-              <ArrowUpRight size={16} className="group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
-            </a>
-            <a
-              href={profile.github}
-              target="_blank"
-              rel="noreferrer"
-              className="group inline-flex items-center gap-2 px-5 py-3 rounded-full glass text-white font-medium hover:bg-white/5 transition"
-            >
-              <GithubIcon width={16} height={16} />
-              GitHub
-              <ArrowUpRight size={16} className="group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
-            </a>
-          </div>
+          <ContactForm source="portfolio_contact" />
         </motion.div>
-      </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.25 }}
+          className="mt-8 flex items-center justify-center gap-3 text-sm text-white/55"
+        >
+          <span>Prefer somewhere else?</span>
+          <a
+            href={profile.linkedin}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-1.5 hover:text-white transition"
+          >
+            <LinkedinIcon width={14} height={14} /> LinkedIn
+            <ArrowUpRight size={12} />
+          </a>
+          <span className="text-white/20">·</span>
+          <a
+            href={profile.github}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-1.5 hover:text-white transition"
+          >
+            <GithubIcon width={14} height={14} /> GitHub
+            <ArrowUpRight size={12} />
+          </a>
+        </motion.div>
+      </div>
     </section>
   );
 }
