@@ -140,7 +140,7 @@ export type FAQ = { q: string; a: string };
 export const faqs: FAQ[] = [
   {
     q: "How do you charge?",
-    a: "Fixed-fee for the audit phase so you know the cost up front. Execution is either fixed-scope (most common) or weekly retainer for open-ended platform work. Hourly only for sub-20-hour engagements.",
+    a: "Whatever fits how you buy. Common shapes: fixed-fee for defined scope (audits, small migrations), lump sum with milestones for larger deliverables, man-days (MD) if you're used to buying engineering time in day-blocks, weekly retainer for open-ended platform work, hourly for sub-20-hour advisory. Tell me how your procurement usually works and I'll match the invoice shape — the underlying rate stays consistent.",
   },
   {
     q: "What's a typical engagement size?",
@@ -152,11 +152,7 @@ export const faqs: FAQ[] = [
   },
   {
     q: "What if I don't have a clear scope yet?",
-    a: "That's most engagements. The audit phase exists exactly to turn 'something is wrong with our infra' into a concrete plan. We start there.",
-  },
-  {
-    q: "Aren't you employed full-time?",
-    a: "Yes — I have a Senior Software Engineer day job. Freelance is evenings, weekends, and the occasional vacation day. That means roughly 10–15 focused hours per week per client, async-first, with weekly demos instead of daily standups. It's why I lean toward fixed-scope work (audits, migrations, training) rather than embedded full-time-equivalent roles.",
+    a: "That's most engagements. The audit phase exists exactly to turn \"something is wrong with our infra\" into a concrete plan. If you'd rather not commit to a full audit up front, we can start on man-days — buy a small block (typically 3–5 MD), I diagnose and produce a written plan, and then we decide whether to convert into a fixed-scope execution or continue on MD.",
   },
   {
     q: "Do you sign NDAs?",
