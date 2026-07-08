@@ -19,7 +19,7 @@ export function Services() {
             What I do
           </p>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight gradient-text">
-            Three things I do really well.
+            Where I focus.
           </h2>
           <p className="mt-4 text-white/65">
             Not a generalist. These are the engagements where I can move the
