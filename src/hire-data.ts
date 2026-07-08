@@ -45,7 +45,8 @@ export const services: Service[] = [
     bullets: [
       "System design reviews for backend services (Go, Python, Node)",
       "CI/CD pipeline architecture with Jenkins, GitLab CI, GitHub Actions",
-      "Observability stack: Grafana, Prometheus, structured logging",
+      "Observability stack: DataDog, Grafana, Prometheus, ELK — SLO-driven alerts, not dashboards nobody reads",
+      "AI ops: MCP servers, LLM gateways with auth + budget caps, prompt observability",
       "Migration plans with risk, rollback, and cutover steps written down",
     ],
     scope: "Audit + written design + implementation handoff",
@@ -78,6 +79,7 @@ export const advisory: AdvisoryService[] = [
     bullets: [
       "Architecture reviews and second opinions before you commit to a direction",
       "Security audits and compliance gap analysis (SOC 2 / ISO 27001 / PDPA readiness, OWASP-aligned app + infra reviews)",
+      "AI ops readiness: MCP server design, LLM gateway architecture, prompt observability + cost guardrails",
       "Technical due diligence for acquisitions or vendor selection",
       "Hiring support: technical screens, take-home review, panel interviews",
       "Async advisory retainer — async messages and weekly office hours",

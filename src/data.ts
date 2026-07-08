@@ -23,7 +23,11 @@ export const skills: { group: string; items: string[] }[] = [
   },
   {
     group: "CI/CD & Observability",
-    items: ["Jenkins", "GitLab CI", "GitOps", "Grafana", "Prometheus"],
+    items: ["Jenkins", "GitLab CI", "GitOps", "DataDog", "Grafana", "Prometheus", "ELK", "Loki"],
+  },
+  {
+    group: "AI Ops & Agents",
+    items: ["MCP Servers", "LLM Gateway", "Prompt Observability", "Agent Orchestration", "Cost Guardrails"],
   },
   {
     group: "Security & Compliance",
@@ -155,11 +159,21 @@ export const projects: Project[] = [
     ],
   },
   {
+    title: "MCP Servers & AI Agent Gateway",
+    stack: ["MCP", "Python", "OpenAI / Anthropic APIs", "Envoy", "Redis"],
+    summary: "Production LLM traffic in front of internal tooling and third-party models.",
+    bullets: [
+      "Built Model Context Protocol servers wrapping internal APIs so LLM agents can call them safely.",
+      "Deployed a gateway in front of OpenAI / Anthropic / self-hosted models — central auth, per-team budget caps, prompt+response logging.",
+      "Wired LLM-specific observability: token spend by product, tail-latency alerts, prompt-injection detection.",
+    ],
+  },
+  {
     title: "Full Observability Stack — Metrics, Logs, Traces, Profiles",
-    stack: ["Prometheus", "Loki", "OpenSearch", "Tempo", "Pyroscope", "Grafana"],
+    stack: ["Prometheus", "DataDog", "ELK", "Loki", "OpenSearch", "Tempo", "Pyroscope", "Grafana"],
     summary: "End-to-end o11y for a multi-service production environment.",
     bullets: [
-      "Prometheus with custom exporters and scrape configs for non-instrumented systems.",
+      "Prometheus and DataDog with custom exporters and scrape configs for non-instrumented systems.",
       "Loki for hot operational logs, ELK/OpenSearch for long-term retention and ad-hoc search.",
       "Distributed tracing for cross-service latency and continuous profiling for CPU/memory hotspots.",
       "Grafana dashboards and alerting rules tuned to SLOs — not to noise.",
